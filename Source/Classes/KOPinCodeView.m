@@ -123,6 +123,14 @@ typedef void (^KOPinCodeViewCallback)(void);
     keyboardType = typeKeyboard;
 }
 
+// @AlphaApps: reset textFields function
+-(void)clear{
+    for (UITextField *textField in textFieldArray) {
+        textField.text = @"";
+    }
+}
+// @AlphaApps: check if textFields are filled
+
 #pragma mark - init
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -194,6 +202,8 @@ typedef void (^KOPinCodeViewCallback)(void);
 -(void)initPinWithCountView:(int)count{
     [self layoutIfNeeded];
     float width = (self.bounds.size.width/1.138)/count;
+    float height = (formView == kRombeye)? 0.9*width : width;
+
     if (width>self.bounds.size.height) {
         width = self.bounds.size.height;
     }
@@ -271,8 +281,8 @@ typedef void (^KOPinCodeViewCallback)(void);
         view.layer.borderWidth  = (form == kNone)? 0 : borderWidth;
         view.layer.borderColor  = (form == kNone)? [borderColor colorWithAlphaComponent:0.0].CGColor : borderColor.CGColor;
         view.layer.cornerRadius = (form == kCircle)? frame.size.width/2 : 0 ;
-        view.backgroundColor = [backgroundSelectColor colorWithAlphaComponent:0.0];
-        
+        view.backgroundColor = (form == kRombeye)? [UIColor colorWithRed:0.97 green:0.97 blue:0.98 alpha:1.0] : [backgroundSelectColor colorWithAlphaComponent:0.0];
+
         [self addSubview:view];
     }
     UITextField *textField;

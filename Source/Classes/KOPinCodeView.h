@@ -5,7 +5,8 @@
 typedef enum FormView : NSUInteger {
     kCircle,        //circle
     kFoursquare,    //Foursquare
-    kNone           //None
+    kNone,           //None
+    kRombeye        //Custom Style
 } FormView;
 
 @protocol KOPinCodeViewDelegate <NSObject>
@@ -95,5 +96,7 @@ typedef enum FormView : NSUInteger {
  Become first cell
  */
 -(void)becomeFirstCell;
-
+// @AlphaApps: reset textFields function
+-(void)clear;
+// @AlphaApps: check if textFields are filled
 @end
